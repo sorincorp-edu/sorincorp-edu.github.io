@@ -14,52 +14,46 @@
 -->
         <li>
             <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-            <span class="nav__sub-title">Programming</span>
+            <span class="nav__sub-title">1. WEB 개발 기술</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
-                {% for category in site.categories %} {% if category[0] == "Java" %}
-                <li><a href="/categories/java" class="">Java ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "OOP" %}
-                <li><a href="/categories/oop" class="">OOP ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Java Lib" %}
-                <li><a href="/categories/java-lib" class="">Java Lib. ({{category[1].size}})</a></li>
+                {% for category in site.categories %} {% if category[0] == "web-1" %}
+                <li><a href="/categories/web-1" class="">웹개발 기초-HTML, CSS, Javascript ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Web-2" %}
+                <li><a href="/categories/web-2" class="">웹개발 심화-웹표준(HTML5, CSS3), jQuery 등 ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "web-3" %}
+                <li><a href="/categories/web-3" class="">MS-Azure클라우드 개발환경 ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "web-4" %}
+                <li><a href="/categories/web-4" class="">Git 및 레드마인 사용법 ({{category[1].size}})</a></li>                
                 {% endif %} {% endfor %}
             </ul>
-            <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-            <span class="nav__sub-title">Framework</span>
-            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <span class="nav__sub-title">2. 실무를 위한 Java</span>
             <ul>
-                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
-                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
-                {% for category in site.categories %} {% if category[0] == "Spring Boot" %}
-                <li><a href="/categories/spring-boot" class="">Spring Boot ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Spring Reactive" %}
-                <li><a href="/categories/spring-webflux" class="">Spring Reactive ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Spring Cloud" %}
-                <li><a href="/categories/spring-cloud" class="">Spring Cloud ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Spring Security" %}
-                <li><a href="/categories/spring-security" class="">Spring Security ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Spring Batch" %}
-                <li><a href="/categories/spring-batch" class="">Spring Batch ({{category[1].size}})</a></li>
+                {% for category in site.categories %} {% if category[0] == "java-1" %}
+                <li><a href="/categories/java-1" class="">Java 개발환경({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "java-2" %}
+                <li><a href="/categories/java-2" class="">Java 기본 ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "java-3" %}
+                <li><a href="/categories/java-3" class="">Framework, Srping Boot ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "java-4" %}
+                <li><a href="/categories/java-4" class="">Spring Security, Batch ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "java-5" %}
+                <li><a href="/categories/java-5" class="">Spring MVC의 이해 ({{category[1].size}})</a></li>
                 {% endif %} {% endfor %}
             </ul>
-            <span class="nav__sub-title">Cloud</span>
-            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <span class="nav__sub-title">3. Database 이론 및 실습</span>
             <ul>
-                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
-                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
-                {% for category in site.categories %} {% if category[0] == "AWS" %}
-                <li><a href="/categories/aws" class="">AWS ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Azure" %}
-                <li><a href="/categories/azure" class="">Azure ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "AWS-lecture" %}
-                <li><a href="/categories/aws-study" class="">AWS Study ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Cloud. ETC" %}
-                <li><a href="/categories/cloud-etc" class="">Cloud ETC. ({{category[1].size}})</a></li>
+                {% for category in site.categories %} {% if category[0] == "db-1" %}
+                <li><a href="/categories/db-1" class="">Data Modeling ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "db-2" %}
+                <li><a href="/categories/db-2" class="">DBMS 이론 ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "db-3" %}
+                <li><a href="/categories/db-3" class="">SQL, PL/SQL ({{category[1].size}})</a></li>
                 {% endif %} {% endfor %}
             </ul>
+            <span class="nav__sub-title">그외 참고용</span>
             <span class="nav__sub-title">Architecture</span>
             <ul>
                 {% for category in site.categories %} {% if category[0] == "Docker" %}
