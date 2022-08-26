@@ -4,7 +4,7 @@ title:  "[Lecture] - Spring Security"
 excerpt: "Spring Security"
 
 categories:
-  - Lecture
+  - java-4
 tags:
   - [Lecture, Java, Servlet]
 

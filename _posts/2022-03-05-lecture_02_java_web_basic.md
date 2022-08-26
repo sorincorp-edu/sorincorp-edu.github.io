@@ -4,7 +4,7 @@ title:  "[Lecture] - JAVA 및 Servlet, Spring, Spring Boot 정리"
 excerpt: "JAVA 및 서블릿, Spring 버젼별 스택정리"
 
 categories:
-  - Lecture
+  - java-2
 tags:
   - [Lecture, Java, Servlet]
 

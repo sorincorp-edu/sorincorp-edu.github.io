@@ -4,7 +4,7 @@ title:  "[Lecture] - Docker 및 GIT 정리"
 excerpt: "Docker의 기본개념 및 git 정리"
 
 categories:
-  - Lecture
+  - web-4
 tags:
   - [Lecture, Java, Servlet]
 

@@ -4,7 +4,7 @@ title:  "[Lecture] - Spring MVC, Dispatcher Servlet"
 excerpt: "Spring MVC 기본과 Dispatcher Servlet"
 
 categories:
-  - Lecture
+  - java-5
 tags:
   - [Lecture, Java, Servlet]
 

@@ -4,7 +4,7 @@ title:  "[Lecture] - JAVA, Spring 개발환경"
 excerpt: "JAVA STS 개발환경정리"
 
 categories:
-  - Lecture
+  - java-1
 tags:
   - [Lecture, Java, Servlet]
 

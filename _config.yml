@@ -103,10 +103,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Wontae Kim"
+  name             : "M2MGlobal. KWT, LHR"
   avatar           : images/profile/img_mmall.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "M2MGlobal, Seoul"
-  # location         : "Seoul"
+  bio              : "M2MGlobal, lab."
+  location         : "Seoul"
   # email            : "wontae_k@m2mglobal.co.kr"
   links:
     - label: "Email"

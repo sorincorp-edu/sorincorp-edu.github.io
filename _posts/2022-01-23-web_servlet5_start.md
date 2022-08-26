@@ -4,7 +4,7 @@ title:  "[WEB.] - Apache Tomcat 10 + Jakarta Servlet 5.0"
 excerpt: "Java + Apache Tomcat 10 + Jakarta Servlet 5.0 + JSP で Hello World"
 
 categories:
-  - ETC
+  - web-1
 tags:
   - [Servelt 5.0]
 

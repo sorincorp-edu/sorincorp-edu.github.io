@@ -4,7 +4,7 @@ title:  "[WEB.] - Web관련 기타 잡동사니"
 excerpt: "서블릿 버젼별 사양"
 
 categories:
-  - ETC
+  - web-1
 tags:
   - [Servlet]
 
