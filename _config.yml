@@ -21,13 +21,13 @@ title                    : "2022 서린상사 신입사원 교육용 Blog."
 title_separator          : "&#124;"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "M2MGlobal. KWT"
-description              : "2022 서린상사 신입사원 교육용 Blog. Version 1.0"
+description              : "2022 서린상사 신입사원교육 Blog. Version 1.0"
 url                      : "https://sorincorp-edu.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : "2022 서린상사 신입사원 교육참고 Note"
+masthead_title           : "2022 서린상사 신입사원교육 참고자료 정리"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -103,11 +103,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "M2MGlobal. KWT, LHR"
+  name             : "M2MGlobal. Lab."
   avatar           : images/profile/img_mmall.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "M2MGlobal, lab."
+  bio              : "Wontae Kim, Hyeri Lee"
   location         : "Seoul"
-  # email            : "wontae_k@m2mglobal.co.kr"
+  # email          : "wontae_k@m2mglobal.co.kr"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -283,13 +283,13 @@ defaults:
       path: ""
       type: posts
     values:
-      layout: single
+      layout: wide
       author_profile: true
       read_time: false
       comments: # true
       share: false
       related: true
-      sidebar_main: true      
+      sidebar_main: false      
 
   # _pages
   - scope:
