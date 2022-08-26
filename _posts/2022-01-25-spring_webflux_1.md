@@ -4,7 +4,7 @@ title:  "[Spring WebFlux] - Spring Web on Reactive Stack(1)"
 excerpt: "스프링5 웹 리액티브 스택 웹플럭스 한글 번역 1편"
 
 categories:
-  - Spring Reactive
+  - java-3
 tags:
   - [Spring WebFlux, Spring Reactive]
 

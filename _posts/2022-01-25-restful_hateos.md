@@ -4,7 +4,7 @@ title:  "[REST] - Spring HATEOAS을 이용한 RESTful 서비스 작성"
 excerpt: "Spring HATEOAS, HAL JSON"
 
 categories:
-  - Design
+  - web-3
 tags:
   - [RESTful, HATEOAS, HAL JSON]
 

@@ -4,7 +4,7 @@ title:  "[Redis] - 레디스 클러스터에 관한 간단한 정리"
 excerpt: "Redis cluster, failover, node"
 
 categories:
-  - Redis
+  - java-2
 tags:
   - [Redis]
 

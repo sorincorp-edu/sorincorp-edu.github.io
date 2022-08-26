@@ -4,11 +4,11 @@ title:  "[REST] - RESTful 기본 및 보안정리"
 excerpt: "RESTful의 설계시 기본"
 
 categories:
-  - Design
+  - web-4
 tags:
   - [Design, RESTful, HATEOAS]
 
-toc: true
+toc: false
 toc_sticky: true
  
 date: 2022-01-25
