@@ -1,0 +1,121 @@
+---
+layout: single
+title:  "[WEB] - JSON(JavaScript Object Notation)"
+excerpt: "JSON 기초 및 변환"
+
+categories:
+  - web-2
+tags:
+  - [json]
+
+toc: false
+toc_sticky: true
+ 
+date: 2022-08-25
+last_modified_at: 2022-08-25
+---
+
+# JSON (JavaScript Object Notation)
+  - 구조화된 데이터를 나타내기 위한 텍스트 기반 데이터 형식
+  - JavaScript에서 객체를 만들때 사용함
+
+## 특징
+  - XML을 대체하여 데이터 전송에 많이 쓰임
+  - 다른 프로그래밍 언어를 이용해서도 쉽게 생성가능. 
+  - 대부분의 프로그래밍 언어에서 JSON 포맷의 데이터를 핸들링할 수 있는 라이브러리 제공
+
+## JSON 텍스트를 JavaScript Object로 변환하는 방법
+### JSON.stringify()
+  - JavaScript 객체를 JSON text로 변환
+  (Object -> 문자열)
+
+  ``` javascript
+    const fruit = {
+      name: 'mango',
+        color: 'yellow'
+    }
+
+    let fruitStr = JSON.stringify(fruit)
+    console.log(typeof fruitStr)
+    // string
+    console.log(fruitStr)
+    // '{"name":"mango", "color":"yellow"}'
+  ```
+
+
+### JSON.parse()
+  - JSON text를 JavaScript 객체로 변환 
+    (문자열 -> Object)
+
+  ``` javascript
+    // fruitStr = '{"name":"mango", "color":"yellow"}'
+    let fruitObj = JSON.parse(fruitStr);
+    console.log(typeof fruitObj);
+
+    // object
+    console.log(fruitObj)
+    // {name: 'mango', color: 'yellow'}
+  ```
+
+## JSON 구조
+  - JSON은 Javascript 객체 리터럴 문법을 따르는 문자열
+  - JSON 안에는 Javascript의 기본 데이터 타입인 문자열, 숫자, 배열, 불리언 그리고 다른 객체를 포함가능 
+  - 이하 데이터 계층을 구축가능 
+
+``` json
+{
+  "squadName": "Super hero squad",
+  "homeTown": "Metro City",
+  "formed": 2016,
+  "secretBase": "Super tower",
+  "active": true,
+  "members": [
+    {
+      "name": "Molecule Man",
+      "age": 29,
+      "secretIdentity": "Dan Jukes",
+      "powers": [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+      ]
+    },
+    {
+      "name": "Madame Uppercut",
+      "age": 39,
+      "secretIdentity": "Jane Wilson",
+      "powers": [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes"
+      ]
+    },
+    {
+      "name": "Eternal Flame",
+      "age": 1000000,
+      "secretIdentity": "Unknown",
+      "powers": [
+        "Immortality",
+        "Heat Immunity",
+        "Inferno",
+        "Teleportation",
+        "Interdimensional travel"
+      ]
+    }
+  ]
+}
+```
+
+- 이 객체를 Javascript 프로그램에서 로드하고, superHeroes라는 이름의 변수에 파싱하면 JavaScript object basics 문서에서 보았던 것처럼 점/브라켓 표현법을 통해 객체 내 데이터에 접근가능
+
+``` javascript
+  superHeroes.homeTown
+  superHeroes['active']
+```
+
+- 하위 계층의 데이터에 접근하려면, 간단하게 프로퍼티 이름과 배열 인덱스의 체인을 통해 접근가능. 
+- 예를 들어 superHeroes의 두 번째 member의 세 번째 power에 접근하려면 아래와 같이 하면 됩니다.
+
+``` javascript
+  superHeroes['members'][1]['powers'][2]
+```  
