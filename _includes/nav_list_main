@@ -1,0 +1,119 @@
+<!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
+
+{% assign sum = site.posts | size %}
+
+<nav class="nav__list">
+    <input id="ac-toc" name="accordion-toc" type="checkbox" />
+    <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
+    <ul class="nav__items" id="category_tag_menu">
+        <!--전체 글 수-->
+        <!-- 
+      <li>
+          📂<span style="font-family:'Cafe24Oneprettynight';">전체 글</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+-->
+        <li>
+            <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+            <span class="nav__sub-title">Programming</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
+                {% for category in site.categories %} {% if category[0] == "Java" %}
+                <li><a href="/categories/java" class="">Java ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "OOP" %}
+                <li><a href="/categories/oop" class="">OOP ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Java Lib" %}
+                <li><a href="/categories/java-lib" class="">Java Lib. ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+            <span class="nav__sub-title">Framework</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
+                {% for category in site.categories %} {% if category[0] == "Spring Boot" %}
+                <li><a href="/categories/spring-boot" class="">Spring Boot ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Spring Reactive" %}
+                <li><a href="/categories/spring-webflux" class="">Spring Reactive ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Spring Cloud" %}
+                <li><a href="/categories/spring-cloud" class="">Spring Cloud ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Spring Security" %}
+                <li><a href="/categories/spring-security" class="">Spring Security ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Spring Batch" %}
+                <li><a href="/categories/spring-batch" class="">Spring Batch ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <span class="nav__sub-title">Cloud</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
+                {% for category in site.categories %} {% if category[0] == "AWS" %}
+                <li><a href="/categories/aws" class="">AWS ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Azure" %}
+                <li><a href="/categories/azure" class="">Azure ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "AWS-lecture" %}
+                <li><a href="/categories/aws-study" class="">AWS Study ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Cloud. ETC" %}
+                <li><a href="/categories/cloud-etc" class="">Cloud ETC. ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <span class="nav__sub-title">Architecture</span>
+            <ul>
+                {% for category in site.categories %} {% if category[0] == "Docker" %}
+                <li><a href="/categories/docker" class="">Docker ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Kubernates" %}
+                <li><a href="/categories/kubernates" class="">Kubernates ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %} {% if category[0] == "Redis" %}
+                <li><a href="/categories/redis" class="">Redis ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "ELK Stack" %}
+                <li><a href="/categories/elk" class="">ELK Stack ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "MQ" %}
+                <li><a href="/categories/mq" class="">MQ ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Kafka" %}
+                <li><a href="/categories/kafka" class="">Kafka ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <span class="nav__sub-title">MSA</span>
+            <ul>
+                {% for category in site.categories %} {% if category[0] == "MSA" %}
+                <li><a href="/categories/msa" class="">MSA ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %} {% if category[0] == "Design" %}
+                <li><a href="/categories/design" class="">Design Pattern ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <span class="nav__sub-title">Front-End</span>
+            <ul>
+                {% for category in site.categories %} {% if category[0] == "Javascript" %}
+                <li><a href="/categories/javascript" class="">Javascript ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "nodeJS" %}
+                <li><a href="/categories/nodejs" class="">nodeJS ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "vusJS" %}
+                <li><a href="/categories/vusjs" class="">vusJS ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+            <span class="nav__sub-title">Dev. Env</span>
+            <ul>
+                {% for category in site.categories %} {% if category[0] == "Blog" %}
+                <li><a href="/categories/blog" class="">Github Blog. ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "VSCode" %}
+                <li><a href="/categories/vscode" class="">VSCode ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Tools" %}
+                <li><a href="/categories/tools" class="">Tools ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "ETC" %}
+                <li><a href="/categories/etc" class="">ETC. ({{category[1].size}})</a></li>
+                {% endif %} {% if category[0] == "Lecture" %}
+                <li><a href="/categories/lecture" class="">Lecture ({{category[1].size}})</a></li>
+                {% endif %} {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</nav>
