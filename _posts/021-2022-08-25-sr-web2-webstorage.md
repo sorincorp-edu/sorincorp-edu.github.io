@@ -1,5 +1,5 @@
 ---
-layout: wide
+layout: single
 title:  "[WEB] - Web Storage 기본"
 excerpt: "localStorage, sessionStorage"
 
