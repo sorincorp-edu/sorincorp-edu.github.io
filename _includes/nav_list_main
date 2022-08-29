@@ -21,7 +21,7 @@
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
                 {% for category in site.categories %} {% if category[0] == "web-1" %}
                 <li><a href="/categories/web-1" class="">1. 웹개발기초 ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Web-2" %}
+                {% endif %} {% if category[0] == "web-2" %}
                 <li><a href="/categories/web-2" class="">2. 웹개발심화 ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "web-3" %}
                 <li><a href="/categories/web-3" class="">3. Azure클라우드 ({{category[1].size}})</a></li>
