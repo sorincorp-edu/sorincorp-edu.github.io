@@ -175,6 +175,7 @@ socket.binaryType = "arraybuffer";
 socket.onmessage = (event) => {
   // event.data는 (텍스트인 경우) 문자열이거나 (이진 데이터인 경우) arraybuffer 입니다.
 };
+
 Rate limiting
 Imagine, our app is generating a lot of data to send. But the user has a slow network connection, maybe on a mobile internet, outside of a city.
 
