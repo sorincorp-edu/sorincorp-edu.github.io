@@ -322,6 +322,7 @@ setTimeout(function(){
   console.log('Yay!')
 }, 1000)
 ```
+
 - 위 예시를 ES6에서 Promise를 사용해서 재작성하면 아래와 같다.
 
 ``` javascript
@@ -331,6 +332,7 @@ var wait1000 =  new Promise(function(resolve, reject) {
   console.log('Yay!')
 })
 ```
+
 - 위 예시를 화살표 함수를 사용해 재작성한 예시는 아래와 같다.
 
 ``` javascript
@@ -352,6 +354,7 @@ setTimeout(function(){
 ```
 
 - 아래는 ES6 Promise 로 작성된 예시.
+
 ``` javascript
 var wait1000 =  ()=> new Promise((resolve, reject)=> {setTimeout(resolve, 1000)})
 wait1000()
