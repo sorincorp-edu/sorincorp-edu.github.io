@@ -1,18 +1,18 @@
 ---
 layout: single
-title:  "[Lecture] - Docker을 이용한 MySQL 설치"
+title:  "[JAVA] - Docker을 이용한 MySQL 설치"
 excerpt: "local환경 MySQL 설치 정리"
 
 categories:
-  - Lecture
+  - java-1
 tags:
-  - [Lecture, mysql, docker]
+  - [mysql, docker]
 
-toc: true
-toc_sticky: true
+toc: false
+toc_sticky: false
  
-date: 2022-04-11
-last_modified_at: 2022-04-11
+date: 2022-08-26
+last_modified_at: 2022-08-26
 ---
 
 ## Docker을 이용한 MySQL 설치

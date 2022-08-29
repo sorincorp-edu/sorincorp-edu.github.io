@@ -1,18 +1,18 @@
 ---
 layout: single
-title:  "[Lecture] - JAVA 및 Servlet, Spring, Spring Boot 정리"
+title:  "[JAVA] - JAVA 및 Servlet, Spring, Spring Boot 정리"
 excerpt: "JAVA 및 서블릿, Spring 버젼별 스택정리"
 
 categories:
-  - java-2
+  - java-1
 tags:
-  - [Lecture, Java, Servlet]
+  - [Java, Servlet]
 
-toc: true
-toc_sticky: true
+toc: false
+toc_sticky: false
  
-date: 2022-03-05
-last_modified_at: 2022-03-05
+date: 2022-08-24
+last_modified_at: 2022-08-24
 ---
 
 ## JDK 간 버전별 차이점

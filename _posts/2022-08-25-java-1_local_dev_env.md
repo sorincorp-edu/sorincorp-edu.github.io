@@ -1,12 +1,12 @@
 ---
 layout: single
-title:  "[Lecture] - JAVA, Spring 개발환경"
+title:  "[JAVA] - JAVA, Spring 개발환경"
 excerpt: "JAVA STS 개발환경정리"
 
 categories:
   - java-1
 tags:
-  - [Lecture, Java, Servlet]
+  - [Java, Servlet]
 
 toc: true
 toc_sticky: true

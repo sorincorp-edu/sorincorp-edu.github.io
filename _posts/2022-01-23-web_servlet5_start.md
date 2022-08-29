@@ -64,6 +64,7 @@ $ cd mywebapp
 ```
 
 * 파일 목록
+```
 mywebapp
 ├── build.gradle
 └── src
@@ -76,6 +77,7 @@ mywebapp
             ├── WEB-INF
             │   └── web.xml
             └── myjsp.jsp
+```
 
 
 #### build.gradle
