@@ -27,6 +27,8 @@
                 <li><a href="/categories/web-3" class="">3. Azure클라우드 ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "web-4" %}
                 <li><a href="/categories/web-4" class="">4. Git, 레드마인 ({{category[1].size}})</a></li>                
+                {% endif %} {% if category[0] == "web-5" %}
+                <li><a href="/categories/web-4" class="">5. Web 기반기술 ({{category[1].size}})</a></li>                 
                 {% endif %} {% endfor %}
             </ul>
             <span class="nav__sub-title">2. 실무를 위한 Java</span>
