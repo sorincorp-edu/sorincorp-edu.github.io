@@ -1,18 +1,18 @@
 ---
 layout: single
-title:  "[WEB.] - Apache Tomcat 10 + Jakarta Servlet 5.0"
-excerpt: "Java + Apache Tomcat 10 + Jakarta Servlet 5.0 + JSP で Hello World"
+title:  "[JSP] - Apache Tomcat 10 + Jakarta Servlet 5.0"
+excerpt: "Java + Apache Tomcat 10 + Jakarta Servlet 5.0 + JSP  Hello World"
 
 categories:
-  - web-1
+  - java-3
 tags:
-  - [Servelt 5.0]
+  - [java-3, Servelt 5.0]
 
-toc: true
-toc_sticky: true
+toc: false
+toc_sticky: false
  
-date: 2022-01-21
-last_modified_at: 2022-01-21
+date: 2022-06-21
+last_modified_at: 2022-06-21
 ---
 
 ## 개요

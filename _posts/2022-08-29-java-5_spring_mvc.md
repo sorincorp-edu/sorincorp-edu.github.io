@@ -1,12 +1,12 @@
 ---
 layout: single
-title:  "[Lecture] - Spring MVC, Dispatcher Servlet"
+title:  "[Spring] - Spring MVC, Dispatcher Servlet"
 excerpt: "Spring MVC 기본과 Dispatcher Servlet"
 
 categories:
   - java-5
 tags:
-  - [Lecture, Java, Servlet]
+  - [java-5, Java, Servlet]
 
 toc: true
 toc_sticky: true

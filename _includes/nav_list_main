@@ -38,9 +38,9 @@
                 {% endif %} {% if category[0] == "java-2" %}
                 <li><a href="/categories/java-2" class="">2. Java기본 ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "java-3" %}
-                <li><a href="/categories/java-3" class="">3. Framework, Spring Boot ({{category[1].size}})</a></li>
+                <li><a href="/categories/java-3" class="">3. JDBC, JSP ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "java-4" %}
-                <li><a href="/categories/java-4" class="">4. Spring Security, Batch ({{category[1].size}})</a></li>
+                <li><a href="/categories/java-4" class="">4. Spring Boot ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "java-5" %}
                 <li><a href="/categories/java-5" class="">5. Spring MVC ({{category[1].size}})</a></li>
                 {% endif %} {% endfor %}

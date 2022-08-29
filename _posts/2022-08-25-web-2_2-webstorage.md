@@ -6,7 +6,7 @@ excerpt: "localStorage, sessionStorage"
 categories:
   - web-2
 tags:
-  - [localStorage, sessionStorage]
+  - [web-2, localStorage, sessionStorage]
 
 toc: false
 toc_sticky: true

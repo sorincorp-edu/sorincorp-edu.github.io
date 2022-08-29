@@ -4,12 +4,12 @@ title:  "[WEB] - 웹소켓 (WebSocket)"
 excerpt: "웹소켓"
 
 categories:
-  - web-2
+  - web-5
 tags:
-  - [websocket]
+  - [web-5, websocket]
 
 toc: false
-toc_sticky: true
+toc_sticky: false
  
 date: 2022-08-25
 last_modified_at: 2022-08-25

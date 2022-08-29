@@ -1,18 +1,18 @@
 ---
 layout: single
-title:  "[WEB.] - Web관련 기타 잡동사니"
+title:  "[WEB] - Web 관련 참고자료"
 excerpt: "서블릿 버젼별 사양"
 
 categories:
   - web-1
 tags:
-  - [Servlet]
+  - [web-1, Servlet]
 
 toc: true
 toc_sticky: true
  
-date: 2022-01-21
-last_modified_at: 2022-01-21
+date: 2022-06-21
+last_modified_at: 2022-06-21
 ---
 
 ## 서블릿 버젼별 사양정리
