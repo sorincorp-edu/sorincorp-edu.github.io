@@ -1,18 +1,18 @@
 ---
 layout: single
-title:  "[Lecture] - Docker 및 GIT 정리"
+title:  "[WEB] - Docker 및 GIT 정리"
 excerpt: "Docker의 기본개념 및 git 정리"
 
 categories:
   - web-4
 tags:
-  - [Lecture, Java, Servlet]
+  - [GIT, Docker]
 
-toc: true
-toc_sticky: true
+toc: false
+toc_sticky: false
  
-date: 2022-08-30
-last_modified_at: 2022-08-30
+date: 2022-08-29
+last_modified_at: 2022-08-29
 ---
 # Git
 
