@@ -4,9 +4,9 @@ title:  "[TOOLS] - Eclipse 단축키, 템플릿 사용법"
 excerpt: "Eclipse 단축키, 템플릿 사용법 설명"
 
 categories:
-  - tools
+  - Tools
 tags:
-  - [tools, eclipse]
+  - [Tools, eclipse]
 
 toc: false
 toc_sticky: false
