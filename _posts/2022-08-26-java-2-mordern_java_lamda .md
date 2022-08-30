@@ -121,6 +121,56 @@ sum() 메소드를 람다식으로 표현해보면 다음과 같이 작성할 �
   (x, y) -> x + y
 ```
 
+## 람다변환 예제
+
+- 예제 1
+
+``` java
+  int max(int a, int b) {
+    return a > b ? a : b;
+  }
+```
+
+``` java
+  (a, b) -> a > b ? a : b
+```
+
+- 예제 2
+
+``` java
+  int printValue(String name, int i) {
+    System.out.println(name + "=" + i);
+  }
+```
+
+``` java
+  (name, i) -> System.out.println(name + "=" + i)
+```
+
+- 예제 3
+
+``` java
+  int square(int x) {
+    return x * x;
+  }
+```
+
+``` java
+  x -> x * x
+```
+
+- 예제 4
+
+``` java
+  int roll() {
+    return (int)(Math.random() * 6);
+  }
+```
+
+``` java
+  () -> (int)(Math.random() * 6)
+```
+
 ## 람다식 문법(Lambda expression syntax)
 
 > (매개변수 목록) -> { 람다식 바디 }
