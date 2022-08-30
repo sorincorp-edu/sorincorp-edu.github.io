@@ -11,8 +11,8 @@ tags:
 toc: false
 toc_sticky: false
  
-date: 2022-08-29
-last_modified_at: 2022-08-29
+date: 2022-08-27
+last_modified_at: 2022-08-27
 ---
 ## 변수 선언의 방식
 ``` javascript

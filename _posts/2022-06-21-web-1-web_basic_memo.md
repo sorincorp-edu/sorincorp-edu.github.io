@@ -11,8 +11,8 @@ tags:
 toc: true
 toc_sticky: true
  
-date: 2022-06-21
-last_modified_at: 2022-06-21
+date: 2022-08-21
+last_modified_at: 2022-08-21
 ---
 
 ## 서블릿 버젼별 사양정리

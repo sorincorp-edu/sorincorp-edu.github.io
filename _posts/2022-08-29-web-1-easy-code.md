@@ -11,8 +11,8 @@ tags:
 toc: false
 toc_sticky: false
  
-date: 2022-08-29
-last_modified_at: 2022-08-29
+date: 2022-08-25
+last_modified_at: 2022-08-25
 ---
 # 이해하기 쉬운 코드 작성방법 정리
 ### 글의 목적

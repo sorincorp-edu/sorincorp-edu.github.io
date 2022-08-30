@@ -11,8 +11,8 @@ tags:
 toc: false
 toc_sticky: false
  
-date: 2022-08-29
-last_modified_at: 2022-08-29
+date: 2022-08-27
+last_modified_at: 2022-08-27
 ---
 # Promise 정리
 - 비동기 작업을 순차적으로 처리하게 되면 앞의 콜백 패턴에서 본 것처럼 콜백이 중첩된 콜백 트라이앵글 구조가 되어서 코드의 가독성이 떨어지게 된다.
