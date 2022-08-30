@@ -11,8 +11,8 @@ tags:
 toc: false
 toc_sticky: false
  
-date: 2022-08-30
-last_modified_at: 2022-08-30
+date: 2022-08-26
+last_modified_at: 2022-08-26
 ---
 # 람다식
 자바8에서 '람다식(Lambda Expression)'이 지원되면서 자바는 완전히 새로운 언어처럼 보이기 시작했다. 지네릭스(Generics)가 자바을 크게 변화시킨 것처럼 람다식 역시 자바를 어마어마하게 변화시켰다. 람다식의 등장으로 자바는 객체지향 언어의 특징과 함께 함수형 언어의 특성을 갖추게 되었다.

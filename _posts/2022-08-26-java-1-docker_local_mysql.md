@@ -11,8 +11,8 @@ tags:
 toc: false
 toc_sticky: false
  
-date: 2022-08-26
-last_modified_at: 2022-08-26
+date: 2022-08-25
+last_modified_at: 2022-08-25
 ---
 
 ## Docker을 이용한 MySQL 설치
