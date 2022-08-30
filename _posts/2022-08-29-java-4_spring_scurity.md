@@ -1,18 +1,18 @@
 ---
 layout: single
-title:  "[Lecture] - Spring Security"
+title:  "[Spring] - Spring Security"
 excerpt: "Spring Security"
 
 categories:
   - java-4
 tags:
-  - [Lecture, Java, Servlet]
+  - [java-4, Java, Servlet]
 
 toc: true
 toc_sticky: true
  
-date: 2022-03-05
-last_modified_at: 2022-03-05
+date: 2022-08-30
+last_modified_at: 2022-08-30
 ---
 # Spring Security
 ## Spring Security(스프링 시큐리티)
