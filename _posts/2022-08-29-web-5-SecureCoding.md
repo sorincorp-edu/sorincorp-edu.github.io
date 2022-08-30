@@ -25,40 +25,40 @@ last_modified_at: 2022-08-29
   - 3) 신뢰할만한 라이브러리 사용 : 누군가 라이브러리를 만들었다면 잘 테스트되고 신뢰할만 한지 확인할 것.
   - 4) 좋은 코딩 관례 따르기 : 구조화가 잘 되어있는지 확인한다. 
   
-  ## 2. 예외 처리
+## 2. 예외 처리
   - 소스코드 어디서든 에러가 발생할 수 있다. 그치만 에러 이후 개발자가 예상하지 못한 중단이 발생해서는 안된다.
   
-  ## 3. 쿼리 문자열 분석 위험
+## 3. 쿼리 문자열 분석 위험
   - 웹 애플리케이션에서는 쿼리 문자열을 사용하는 경우가 많다. 
   - 예를들어 "jeongpro blog" 라고 검색하면 아래처럼 표시될 수 있다.
     - http://mysearchengine.com/search?q=jeongpro+blog
   - 이것을 Express에서 req.query로 가져와서 분석하는 예제를 보겠다.
   
-  ``` javascript
+``` javascript
   app.get("/search",function(req,res){    
       var search = req.query.q.replace(/\+/g, " ");    
       // .... 기타처리....
   });
-  ```
+```
 
   - 이것은 예상대로 쿼리가 들어오지 않으면 문제를 일으킨다. 
   - "/search"만 입력하면 정의되지 않은 변수에서 .replace를 호출해서 에러가 난다.
   
-  ``` javascript
+``` javascript
   app.get("/search",function(req,res){    
     var search = req.query.q || ""; 
     // 정의되지 않았을 때     
     var terms = search.split("+");    
     // .... 기타처리....
   });
-  ```
+```
 
   - 조금 개선해서 정의되지 않았을 때 빈문자열로 하게 만들었지만 이번엔 쿼리 문자열의 형식이 문제다.
   - 예를들어 "/search?q=abc"를 방문하면 req.query.q는 문자열이다. 
   - "/search?q=abc&name=jeongpro"를 방문하면 req.query.q는 여전히 문자열이다. 그런데 "/search?q=abc&q=def"를 방문하면 req.query.q는 배열이 된다. 배열에 split() 함수가 없으니 에러가 난다. 이런 동작이 허용되어서는 안된다. 
   - nodejs에서는 "arraywrap 패키지"를 받아서 처리한다. 원리는 문자열이 오면 배열로 래핑해버리고 배열이 오면 이미 배열이기때문에 배열 그대로 리턴한다.
 
-    ``` javascript
+``` javascript
   var arrayWrap = require("arraywrap");
   //..
   app.get("/search",function(req,res){    
@@ -66,7 +66,7 @@ last_modified_at: 2022-08-29
     var terms = search[0].split("+");    
     // .... 기타처리....
   });
-  ```
+```
   - 이렇게 처리하면 많은 쿼리가 와도 첫번째 쿼리만 받고 나머지는 무시하며 쿼리 인수를 하나든 없든 잘 동작한다.
   - **결론 : 사용자 입력을 절대로 신뢰하지 말라.**
   
@@ -116,7 +116,7 @@ app.use(helmet.hsts({    
 - 5) HTTP헤더로 완화하기
 
 ``` javascript  
-app.use(helmet.xssFilter());
+  app.use(helmet.xssFilter());
 ```
 
 - 한 문장으로 이용해서 X-XSS-Protection 보안헤더를 작성. 
@@ -127,27 +127,26 @@ app.use(helmet.xssFilter());
 - CSRF 공격을 성사시키기 위해서는 아무도 모르게 양식을 제출해야한다.
 
 ``` html
-<h1>Transfer money</h1>
-<form method="post" action="https://mybank.biz/transfermoney">    
-  <input name="recipient" value="yourname" type="text">    
-  <input name="amount" value="1000000" type="number">    
-  <input type="submit">
-</form>
+  <h1>Transfer money</h1>
+  <form method="post" action="https://mybank.biz/transfermoney">    
+    <input name="recipient" value="yourname" type="text">    
+    <input name="amount" value="1000000" type="number">    
+    <input type="submit">
+  </form>
 ```
 
 - 이렇게 만들면 의심스러워서 보통 submit을 누르지 않는다.따라서 해커는 자동으로 제출해버리는 방법을 택한다.
 
 ``` javascript 
-<script>
-  var formElement = document.querySelector("form");
-  formElement.submit();
-</script>
+  <script>
+    var formElement = document.querySelector("form");
+    formElement.submit();
+  </script>
 ```
 
 - 이렇게 자기의 폼과 자동 제출을 넣은 것을 iframe으로 보이지 않게 해버린다.
 - CSRF 보호 방법은행에서 특정 폼에대한 HTML을 전송할 때 숨긴 요소(토큰)을 양식에 추가한다.
 - 토큰은 완전 랜덤하고 추측이 어려운 문자열이다. <input name="_csrf" type="hidden" value="1dmkTnkHePmTB0d1glhm">이제 양식을 제출하고 POST요청을 할 때 은행은 csrf토큰이 방금 받은 것과 일치하는지 확인한다.
-
   - 1) 사용자에게 데이터 요청할 때마다 임의의 csrf 토큰을 만든다.
   - 2) 그 데이터를 처리할 때마다 토큰의 유효성을 검증한다.
   
@@ -177,7 +176,7 @@ app.use(helmet.xssFilter());
 ### 방어법  
   - X-Frame-Option을 deny를 줘서 방지.
   **해당하는 웹서버의 설정파일의 마지막에 다음과 같이 추가하고 웹서버를 다시 시작한다.**
->
+
 > [Apache]
 > Header always append X-Frame-Options DENY
 >
@@ -198,15 +197,15 @@ app.use(helmet.xssFilter());
 >  </httpProtocol>
 > ...
 > </system.webServer>
->  
+  
 ## 8. 브라우저에서 파일 형식 추측 금지하기
 - 사용자가 서버에 file.txt라는 평문의 파일을 업로드할 경우 file.txt 파일안에 스크립트가 있었다면
 
 ``` javascript 
-function stealuserData(){    
-  //해...킹
-}
-stealuserData();
+  function stealuserData(){    
+    //해...킹
+  }
+  stealuserData();
 ```
 
 - cs많은 브라우저에서 파일 형식이 자바스크립트용이 아니라면 실행하도록 허용한다. 
