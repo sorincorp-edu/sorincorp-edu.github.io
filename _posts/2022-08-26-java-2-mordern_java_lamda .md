@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "[Modern Java] 람다식 및 예제"
+title:  "[JAVA] 람다식 및 예제"
 excerpt: "람다식(Lambda Expressions) 사용법 및 예제"
 
 categories:
