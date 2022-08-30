@@ -102,7 +102,7 @@
                 <li><a href="/categories/blog" class="">Github Blog. ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "VSCode" %}
                 <li><a href="/categories/vscode" class="">VSCode ({{category[1].size}})</a></li>
-                {% endif %} {% if category[0] == "Tools" %}
+                {% endif %} {% if category[0] == "tools" %}
                 <li><a href="/categories/tools" class="">Tools ({{category[1].size}})</a></li>
                 {% endif %} {% if category[0] == "ETC" %}
                 <li><a href="/categories/etc" class="">ETC. ({{category[1].size}})</a></li>

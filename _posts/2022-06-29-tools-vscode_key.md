@@ -4,9 +4,9 @@ title:  "[TOOLS] - VSCode 단축키"
 excerpt: "VSCode 단축키"
 
 categories:
-  - Tools
+  - tools
 tags:
-  - [Tools, eclipse]
+  - [tools, eclipse]
 
 toc: false
 toc_sticky: false
