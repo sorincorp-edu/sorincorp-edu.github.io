@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>숫자 맞추기 게임(JavaScript)</title>
+  <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    body {
+      width: 50%;
+      max-width: 800px;
+      min-width: 480px;
+      margin: 0 auto;
+    }
+
+    .form input[type="number"] {
+      width: 200px;
+    }
+
+    .lastResult {
+      color: white;
+      padding: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>숫자 맞추기 게임(JavaScript)</h1>
+  <p> - 1 ~ 100까지 범위내 임의로 설정된 숫자를 맞추는 게임.</p>
+  <p> - 기회는 총 10회.</p>
+  <p> - 제시한 숫자와 설정된 숫자가 다를경우 설정된 숫자보다 높고 낮음을 알려줌.</p>
+  <br /><br /><br />
+
+  <!-- 입력폼 -->
+  <div class="form">
+    <label for="guessField">추정값 : </label>
+    <input type="number" min="1" max="100" required id="guessField" class="guessField">
+    <input type="submit" value="값 전송" class="guessSubmit">
+  </div>
+
+  <!-- 결과표시 영역 -->
+  <div class="resultParas">
+    <p class="guesses"></p>
+    <p class="lastResult"></p>
+    <p class="lowOrHi"></p>
+  </div>
+
+  <script>
+    const guesses = document.querySelector('.guesses');
+    const lastResult = document.querySelector('.lastResult');
+    const lowOrHi = document.querySelector('.lowOrHi');
+    const guessSubmit = document.querySelector('.guessSubmit');
+    const guessField = document.querySelector('.guessField');
+
+    let guessCount = 1;
+    let resetButton;
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    function checkGuess() {
+      const userGuess = Number(guessField.value);
+      if (guessCount === 1) {
+        guesses.textContent = '입력한 추정값 : ';
+      }
+      guesses.textContent += userGuess + ' ';
+
+      if (userGuess === randomNumber) {
+        lastResult.textContent = '축하합니다! 값을 맞추셨습니다!';
+        lastResult.style.backgroundColor = 'green';
+        lowOrHi.textContent = '';
+        setGameOver();
+      } else if (guessCount === 10) {
+        lastResult.textContent = '!!!게임 종료!!!';
+        lowOrHi.textContent = '';
+        setGameOver();
+      } else {
+        lastResult.textContent = '틀렸습니다!';
+        lastResult.style.backgroundColor = 'red';
+        if (userGuess < randomNumber) {
+          lowOrHi.textContent = '추정값이 너무 작습니다!';
+        } else if (userGuess > randomNumber) {
+          lowOrHi.textContent = '추정값이 너무 큽니다!';
+        }
+      }
+      guessCount++;
+      guessField.value = '';
+      guessField.focus();
+    }
+
+    guessSubmit.addEventListener('click', checkGuess);
+
+    function setGameOver() {
+      guessField.disabled = true;
+      guessSubmit.disabled = true;
+      resetButton = document.createElement('button');
+      resetButton.textContent = '새 게임 시작';
+      document.body.appendChild(resetButton);
+      resetButton.addEventListener('click', resetGame);
+    }
+
+    function resetGame() {
+      guessCount = 1;
+      const resetParas = document.querySelectorAll('.resultParas p');
+      for (const resetPara of resetParas) {
+        resetPara.textContent = '';
+      }
+
+      resetButton.parentNode.removeChild(resetButton);
+      guessField.disabled = false;
+      guessSubmit.disabled = false;
+      guessField.value = '';
+      guessField.focus();
+      lastResult.style.backgroundColor = 'white';
+      randomNumber = Math.floor(Math.random() * 100) + 1;
+    }
+  </script>
+</body>
+
+</html>

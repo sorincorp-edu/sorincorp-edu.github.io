@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>숫자 맞추기 게임(jQuery)</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .form input[type="number"] {
+            width: 200px;
+        }
+
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+    
+    <!-- jQuery 2.2.4버전을 사용 -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>숫자 맞추기 게임(jQuery)</h1>
+    <p> - 1 ~ 100까지 범위내 임의로 설정된 숫자를 맞추는 게임.</p>
+    <p> - 기회는 총 10회.</p>
+    <p> - 제시한 숫자와 설정된 숫자가 다를경우 설정된 숫자보다 높고 낮음을 알려줌.</p>
+    <br /><br /><br />
+
+    <!-- 입력폼 -->
+    <div class="form">
+        <label for="guessField">추정값 : </label>
+        <input type="number" min="1" max="100" required id="guessField" class="guessField">
+        <input type="submit" value="값 전송" class="guessSubmit">
+    </div>
+
+    <!-- 결과표시 영역 -->
+    <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+
+
+    <script>
+        // 초기설정, jQuery를 이용하여 화면의 각 요소를 읽어와 const 변수에 담아둔다. - 전역변수 Scope
+        const guesses = $('.guesses')
+            , lastResult = $('.lastResult')
+            , lowOrHi = $('.lowOrHi')
+            , guessSubmit = $('.guessSubmit')
+            , guessField = $('.guessField')
+            , retryMaxCnt = 10;     // 최대입력시도횟수(10회)
+        var guessCount = 0;         // 입력시도횟수 - 전역변수 Scope
+
+        // 초기화 - 화면을 처음 loading할때 처리됨
+        $(document).ready(function () {
+            console.log('Page Load start...');
+            // 입력시도횟수 초기화
+            initGuessCount();
+            // 랜덤숫자값 설정
+            setRandomNumber();
+
+            // 클릭 이벤트 등록
+            $(document).on('click', '.guessSubmit', function (e) {
+                // 이벤트 버블링 금지
+                e.stopPropagation();
+                // 처리하려는 이벤트이외 별도 정의된 Default 이벤트 처리안함
+                e.preventDefault();
+                console.log('Input value : ' + $('#guessField').val());
+                // 유저 입력값 확인
+                checkGuess();
+            });
+
+            // 입력값 요소에 keydown 이벤트 등록
+            // html의 onkeypress 로 대체가능
+            $("#guessField").keydown(function(e) {
+                if (e.keyCode == 13) {
+                    if ($(this).val() === '') {
+                        alert('추정값을 입력해 주세요!');
+                        return false;
+                    }                    
+                    checkGuess();
+                }
+            });
+        });
+
+        var initGuessCount = function () {
+            console.log('Init Guess Count...');
+            guessCount = 1;     // 초기화 - 전역변수 Scope
+        }
+
+        var setRandomNumber = function() {
+            // 랜덤숫자 생성
+            let randomNumber = Math.floor(Math.random() * 100) + 1;
+            console.log('Setting RandomNumber : ' + randomNumber);
+            // 생성된 랜덤숫자를 guesses 요소의 data 의 'answerNumber' 키를 이용하여 설정
+            guesses.data('answerNumber', randomNumber);
+        };
+
+        var checkGuess = function() {
+            // id = 'guessField' 인 요소의 값 취득 후 Number 처리
+            let userGuess = Number($('#guessField').val());
+            // guesses 요소의 data 의 'answerNumber' 키로 설정된 값을 취득
+            let randomNumber = guesses.data('answerNumber');
+            console.log('checkGuess userGuess : ' + userGuess);
+            console.log('checkGuess randomNumber : ' + randomNumber);
+            // 입력된 값을 보여줄 화면처리
+            if (guessCount === 1) {
+                guesses.text('입력한 추정값 : ');
+            }
+            guesses.text(guesses.text() + ' ' + userGuess);
+
+            // 사용자 입력값과 랜덤설정값이 같을 경우
+            if (userGuess === randomNumber) {
+                lastResult.text('축하합니다! 값을 맞추셨습니다!');
+                lastResult.css('backgroundColor', 'green');
+                lowOrHi.text('');                
+                setGameOver();      // 게임종료 처리
+
+            // 입력시도횟수가 최대입력시도횟수를 초과했을 경우
+            } else if (guessCount === retryMaxCnt) {
+                lastResult.text('!!!게임 종료!!!');
+                lowOrHi.text('');
+                setGameOver();      // 게임종료 처리
+            // 그 외(최대입력시도횟수를 초과하지 않고 유저입력값이 랜덤설정값과 다를 경우)
+            } else {
+                lastResult.text('틀렸습니다!');
+                lastResult.css('backgroundColor', 'red');
+                if (userGuess < randomNumber) {
+                    lowOrHi.text('추정값이 너무 작습니다!');
+                } else if (userGuess > randomNumber) {
+                    lowOrHi.text('추정값이 너무 큽니다!');
+                }
+            }
+            guessCount++;       // 입력시도횟수 1회 증가
+            guessField.val('');
+            guessField.focus();
+        }
+
+
+        var setGameOver = function () {
+            guessField.attr("disabled", true);
+            guessSubmit.attr("disabled", true);
+
+            // 새로운 버튼 요소 생성
+            let _resetButton = document.createElement('button');
+            // 생성된 버튼에 id 설정 및 html 설정
+            $(_resetButton).attr('id', 'resetButton').html('새 게임 시작');
+            // 화면내 요소에 추가('div.resultParas' 요소 뒤에 붙임)
+            $('div.resultParas').after($(_resetButton));
+            // 생성된 버튼에 이벤트 등록
+            $(_resetButton).on('click', function (e) {
+                console.log('click resetGame. ');
+                // 이벤트 버블링 금지
+                e.stopPropagation();
+                // 처리하려는 이벤트이외 별도 정의된 Default 이벤트 처리안함
+                e.preventDefault();
+
+                resetGame();
+            });
+        }
+
+        var resetGame = function () {
+            console.log('start resetGame. ');
+            guessCount = 1;
+
+            // resultParas 클래스내 p 태그들을 대상으로 loop
+            $('.resultParas p').each(function(){
+                $(this).text('');
+            });
+            // 새로운 게임 버튼을 화면요소에서 삭제
+            $('#resetButton').remove();
+
+            // 화면 초기화 처리
+            guessField.attr("disabled", false);
+            guessSubmit.attr("disabled", false);
+            guessField.val('');
+            guessField.focus();
+            lastResult.css('backgroundColor', 'white');
+
+            // 랜덤설정값 새로 생성
+            setRandomNumber();
+            console.log('end resetGame. ');
+        }
+    </script>
+</body>
+
+</html>
