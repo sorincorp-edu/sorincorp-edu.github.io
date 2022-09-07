@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>새로운 배송지 등록</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/sign.css" />
+    <!-- Daum postcode API -->
+    <script
+      src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+      defer
+    ></script>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script src="js/script_jq.js" defer></script>
+    <!-- javaScript -->
+    <!-- <script src="js/script_js.js" defer></script> -->
+  </head>
+  <body>
+    <main>
+      <section class="banner cont_p">
+        <h2 class="banner_tt">배송지 등록</h2>
+        <form id="form" action="#" method="post">
+          <fieldset>
+            <legend>필수 입력 사항</legend>
+            <h4 class="sub_tit">배송지명</h4>
+            <div class="field">
+              <label for="shipaddr">배송지명</label>
+              <input
+                type="text"
+                name="ship_addr"
+                id="shipaddr"
+                placeholder="배송지"
+                autofocus
+              />
+              <span class="material-symbols-outlined">check_circle</span>
+              <span class="material-symbols-outlined">error</span>
+              <small>Error Message</small>
+            </div>
+            <h4 class="sub_tit">받으시는 분</h4>
+            <div class="field">
+              <label for="username">받으시는 분</label>
+              <input
+                type="text"
+                name="user_name"
+                id="username"
+                placeholder="받으시는 분"
+                autofocus
+              />
+              <span class="material-symbols-outlined">check_circle</span>
+              <span class="material-symbols-outlined">error</span>
+              <small>Error Message</small>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>부가 입력 사항</legend>
+            <h4 class="sub_tit">휴대폰번호</h4>
+            <div class="field_wrapper phone">
+              <div class="field">
+                <select name="user_phone_first" id="uphonefirst">
+                  <option value="010">010</option>
+                  <option value="011">011</option>
+                  <option value="016">016</option>
+                  <option value="017">017</option>
+                </select>
+              </div>
+              <div class="field">
+                <input
+                  type="number"
+                  name="user_phone_mid"
+                  id="uphonemid"
+                  min="0"
+                  max="9999"
+                />
+              </div>
+              <div class="field">
+                <input
+                  type="number"
+                  name="user_phone_last"
+                  id="uphonelast"
+                  min="0"
+                  max="9999"
+                />
+              </div>
+            </div>
+
+            <h4 class="sub_tit">주소</h4>
+            <div class="field_wrapper sm">
+              <div class="field">
+                <label for="postcode">우편번호</label>
+                <input
+                  type="text"
+                  name="postcode"
+                  id="postcode"
+                  placeholder="우편번호"
+                />
+              </div>
+              <div>
+                <button id="btn_find">주소검색</button>
+              </div>
+            </div>
+            <div class="field sm">
+              <label for="road">도로명 주소</label>
+              <input
+                type="text"
+                name="road"
+                id="road"
+                placeholder="도로명 주소"
+              />
+            </div>
+            <div class="field">
+              <label for="detail">상세주소</label>
+              <input
+                type="text"
+                name="detail"
+                id="detail"
+                placeholder="상세주소"
+              />
+            </div>
+            <h4 class="sub_tit">특이사항</h4>
+            <div class="field info">
+              <textarea
+                name=""
+                id="extra"
+                cols="30"
+                rows="30"
+                placeholder="배송지 관련 특이사항을 입력해주세요."
+              ></textarea>
+            </div>
+            <div class="consent">
+              <div>
+                <div>
+                  <input type="checkbox" id="defaultYn" class="checkbox_item" />
+                  <label for="defaultYn"><h5>기본 배송지로 설정</h5></label>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <input type="checkbox" id="privacyYn" class="checkbox_item" />
+                  <label for="privacyYn"><h5>배송정보수집 이용 동의</h5></label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <hr />
+
+          <div>
+            <button type="submit" class="button">등록하기</button>
+          </div>
+        </form>
+        <div class="confirm">
+          <div class="wrapper">
+            <table id="table" class="table table-hover table-mc-light-blue">
+              <!-- 8 cols -->
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" id="cbx_chkAll" />
+                  </th>
+                  <th>배송지</th>
+                  <th>수령인</th>
+                  <th>연락처</th>
+                  <th>주소</th>
+                  <th>특이사항</th>
+                  <th>기본배송지<br />여부</th>
+                  <th>배송정보<br />수집동의</th>
+                  <th><button id="delAll">전체 삭제</button></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 행추가 영역 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
