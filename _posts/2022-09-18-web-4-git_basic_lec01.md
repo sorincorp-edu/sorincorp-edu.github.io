@@ -1,7 +1,7 @@
 ---
 layout: single
-title:  "[GIT] - GIT 설치"
-excerpt: "GIT 설치 (Windows, Mac)"
+title:  "[GIT] - GIT 교육자료 1"
+excerpt: "GIT 저장소생성 및 동작개념 설명"
 
 categories:
   - web-4
@@ -14,7 +14,7 @@ toc_sticky: false
 date: 2022-09-18
 last_modified_at: 2022-09-18
 ---
-# Git 설치
+# Git 저장소 생성
 
 ## 1. 실습용 git 폴더 만들기
 - git bash 실행
@@ -43,7 +43,7 @@ last_modified_at: 2022-09-18
   git help [커맨드 이름] : 도움말
 ```
 
-## 4. git 동작개념
+# git 동작개념
 
 ### 1. git의 세가지 작업영역
 
