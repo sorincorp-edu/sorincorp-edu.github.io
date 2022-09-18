@@ -74,11 +74,11 @@ $ git push -u origin main
 ```
 
 - 연결 상태 확인.
-  git remote show origin
+  - git remote show origin
 
 - github 원격저장소에 접근하여 파일 업로드 확인.
 - 로컬 저장소에서 로그 확인.
-  git log --oneline
+  - git log --oneline
 
   - 최상단 commit의 참조 부분에 origin/main 추가. 
   - origin/main 는 로컬 저장소의 main 브랜치와 대응되는 브랜치. 
@@ -88,9 +88,9 @@ $ git push -u origin main
 > 따라서 이후에 push를 할 때는 추가 옵션 없이 git push 명령만 입력.
 
 - git remote push url 변경
-  git remote set-url --push origin <원격지 저장소 주소>
+  - git remote set-url --push origin <원격지 저장소 주소>
 
 - git remote push, fetch url 변경
-  git remote set-url origin <원격지 저장소 주소>
+  - git remote set-url origin <원격지 저장소 주소>
 
 
