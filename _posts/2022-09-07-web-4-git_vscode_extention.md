@@ -21,9 +21,8 @@ last_modified_at: 2022-09-07
 - 코드 작성자를 시각화하고 Git 저장소를 완벽하게 탐색하고 강력한 비교 명령을 지원한다.
 - 사실상 VSCode 내에서 GIT 버젼 관리와 코딩을 동시에 수행하는데 가능
 
-
 ## Git Graph
-Git Graph는 VS Code에서 GUI 기반의 Git 도구를 사용할수 있게 한다.
+GUI 기반의 Git 도구 사용을 가능하게 함 
 - 단순히 그래프만 보기 편한 것뿐만 아니라 번거로운 Git 명령어들도 GUI로 편하게 사용할 수 있다.
 - 커밋 히스토리에서 원하는 내역에 우클릭을 하면 Reset, Revert, Cherry Pick 등의 Git 명령어들을 GUI로 쉽게 이용할 수 있다
 
