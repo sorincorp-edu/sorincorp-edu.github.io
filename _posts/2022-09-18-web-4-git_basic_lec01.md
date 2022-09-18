@@ -96,3 +96,51 @@ git에는 이력의 기록, 즉 commit을 위해 staging 과정을 거치게 된
 
 - commit을 수정할 때
 과거에 기록한 commit 이력을 수정하고자 할 때 파일의 상태를 Staged 상태로 내리고 추가적으로 변경할 사항만 반영하고 commit을 하면 효율적.
+
+### Git의 관리에서 특정 파일/폴더를 배제해야 할 경우
+- 포함할 필요가 없을 때
+  자동으로 생성 또는 다운로드되는 파일들 (빌드 결과물, 라이브러리)
+
+- 포함하지 말아야 할 때
+  보안상 민감한 정보를 담은 파일
+
+- .gitignore 파일을 사용해서 배제할 요소들을 지정.
+
+- .gitignore 형식
+  https://git-scm.com/docs/gitignore 참조
+
+
+>  # 이렇게 #를 사용해서 주석
+>
+>  # 모든 file.c
+>  file.c
+>
+>  # 최상위 폴더의 file.c
+>  /file.c
+>
+>  # 모든 .c 확장자 파일
+>  *.c
+>
+>  # .c 확장자지만 무시하지 않을 파일
+>  !not_ignore_this.c
+>
+>  # logs란 이름의 파일 또는 폴더와 그 내용들
+>  logs
+>
+>  # logs란 이름의 폴더와 그 내용들
+>  logs/
+>
+>  # logs 폴더 바로 안의 debug.log와 .c 파일들
+>  logs/debug.log
+>  logs/*.c
+>
+>  # logs 폴더 바로 안, 또는 그 안의 다른 폴더(들) 안의 debug.log
+>  logs/**/debug.log
+
+### 사용 커멘드
+- git status : git이 인식하고 있는 상태정보 출력
+- git add [파일명 또는 디렉토리명] : 수정사항이 있는 특정파일 또는 디렉토리 내 파일 전체를 Staging area로 올리기
+- git add . : Working directory 내에 수정사항이 있는 모든 파일들을 Staging area에 올리기
+- git reset [파일명] : Staging area에 올렸던 파일 내리기
+- git commit : 이력 저장(commit)
+- git commit -m [메시지] : vim을 사용하지 않고 인라인으로 메시지를 추가하여 commit
