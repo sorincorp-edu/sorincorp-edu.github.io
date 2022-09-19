@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배송지 수정</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/sign.css" />
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="banner cont_p">
+        <h2 class="banner_tt">배송지 수정</h2>
+        <form id="form" action="#" method="post">
+          <fieldset>
+            <legend>배송지 수정</legend>
+            <h4 class="sub_tit">배송지명</h4>
+            <div class="field">
+              <label for="shipaddr">배송지명</label>
+              <input
+                type="text"
+                name="ship_addr"
+                id="shipaddr"
+                placeholder="배송지"
+                autofocus
+              />
+              <span class="icon"></span>
+              <small>Error Message</small>
+            </div>
+            <h4 class="sub_tit">받으시는 분</h4>
+            <div class="field">
+              <label for="username">받으시는 분</label>
+              <input
+                type="text"
+                name="user_name"
+                id="username"
+                placeholder="받으시는 분"
+                autofocus
+              />
+              <span class="icon"></span>
+              <small>Error Message</small>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>부가 입력 사항</legend>
+            <h4 class="sub_tit">휴대폰번호</h4>
+            <div class="field_wrapper phone">
+              <div class="field">
+                <select name="user_phone_first" id="uphonefirst">
+                  <option value="">없음</option>
+                  <option value="010">010</option>
+                  <option value="011">011</option>
+                  <option value="016">016</option>
+                  <option value="017">017</option>
+                </select>
+              </div>
+              <div class="field">
+                <input
+                  type="number"
+                  name="user_phone_mid"
+                  id="uphonemid"
+                  min="0"
+                  max="9999"
+                />
+              </div>
+              <div class="field">
+                <input
+                  type="number"
+                  name="user_phone_last"
+                  id="uphonelast"
+                  min="0"
+                  max="9999"
+                />
+              </div>
+            </div>
+
+            <h4 class="sub_tit">주소</h4>
+            <div class="field_wrapper sm">
+              <div class="field">
+                <label for="postcode">우편번호</label>
+                <input
+                  type="text"
+                  name="postcode"
+                  id="postcode"
+                  placeholder="우편번호"
+                  readonly
+                />
+              </div>
+              <div>
+                <button id="btn_find">검색</button>
+              </div>
+            </div>
+            <div class="field sm">
+              <label for="road">도로명 주소</label>
+              <input
+                type="text"
+                name="road"
+                id="road"
+                placeholder="도로명 주소"
+                readonly
+              />
+            </div>
+            <div class="field">
+              <label for="detail">상세주소</label>
+              <input
+                type="text"
+                name="detail"
+                id="detail"
+                placeholder="상세주소"
+              />
+            </div>
+            <h4 class="sub_tit">특이사항</h4>
+            <div class="field info">
+              <textarea
+                name=""
+                id="extra"
+                cols="30"
+                rows="30"
+                placeholder="배송지 관련 특이사항을 입력해주세요."
+              ></textarea>
+            </div>
+          </fieldset>
+          <hr />
+
+          <div>
+            <button type="submit" class="button">수정</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,355 @@
+header .container {
+  justify-content: center;
+}
+
+.banner form {
+  /* width: 350px; */
+  width: 412px;
+  margin: calc(var(--base_unit) * 3) auto;
+  position: relative;
+}
+.feedback {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 40px);
+  background: #fff;
+  border-radius: 2px;
+  padding: 20px;
+  width: 262px;
+  box-sizing: border-box;
+}
+.feedback:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #fff transparent transparent;
+  right: 100%;
+  top: 20px;
+}
+legend {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.banner form .field {
+  /* margin-bottom: 10px; */
+  margin-bottom: 40px;
+  display: flex;
+  gap: 10px;
+  border: 1px solid #d2d2d2;
+  position: relative;
+}
+.banner form .field:not(.gender):not(.interest) label {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.banner form .field:nth-of-type(5),
+.banner form .field:nth-of-type(6) {
+  margin-bottom: 18px;
+}
+.banner form .field.gender,
+.banner form .field.interest {
+  justify-content: center;
+  border: none;
+}
+.banner form .field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: none;
+}
+.banner form .field.success {
+  border-color: #2ecc71;
+  border-width: 2px;
+}
+.banner form .field.success span {
+  visibility: visible;
+  color: #2ecc71;
+}
+.banner form .field.error {
+  border-color: #e74c3c;
+  border-width: 2px;
+}
+.banner form .field.error span {
+  visibility: visible;
+  color: #e74c3c;
+}
+.banner form .field input[type="radio"],
+.banner form .field input[type="checkbox"] {
+  flex: none;
+}
+.banner form .field select {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  /* background: none; */
+  position: relative;
+  color: var(--light_txt);
+}
+.banner form .field select::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-color: #0068ff transparent transparent transparent;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+.banner form .field select option[value=""][disabled] {
+  display: none;
+}
+.banner ul li {
+  color: var(--light_txt);
+  line-height: 1.45;
+  padding-bottom: 10px;
+  font-size: 14px;
+}
+.banner ul li span {
+  transform: translateY(3px);
+  font-size: 16px;
+  margin-right: 4px;
+}
+.banner form .field .icon {
+  display:block;
+  font-family:'Material Symbols Outlined';
+  font-size:0;
+  line-height:0;
+}
+.banner form .field .icon:before, .banner form .field .icon:after {
+  display:none;
+  font-size:24px;
+  line-height:54px;
+}
+.banner form .field .icon:before {
+  content:'check_circle';
+  color: #2ecc71;
+}
+.banner form .field .icon:after {
+  content:'error';
+  color: #e74c3c;
+}
+.banner form .field.success .icon:before, .banner form .field.error .icon:after {
+  display:block;
+}
+.banner form .field small {
+  /* position: absolute;
+  clip: rect(0 0 0 0);
+  width: 0;
+  height: 0;
+  overflow: hidden;     */
+  position: absolute;
+  bottom: -45px;
+  left: 22px;
+  font-size: 13px;
+  visibility: hidden;
+}
+.banner form .field.success small{
+  color: #2ecc71;
+}
+.banner form .field.error small{
+  visibility: visible;
+  color: #e74c3c;
+}
+.banner .button {
+  width: 100%;
+  background: none;
+  border-radius: 10px;
+  height: calc(var(--base_unit) * 2);
+  text-align: center;
+  line-height: calc(var(--base_unit) * 2);
+  color: #0068ff;
+  text-transform: uppercase;
+  /* font-weight: bold; */
+  border: 1px solid #0068ff;
+  font-size: 18px;
+  line-height: 18px;
+}
+.banner hr {
+  margin: 32px 0 32px;
+}
+.confirm {
+  text-align: center;
+}
+.confirm h3 {
+  font-size: 24px;
+  color: var(--primary-c);
+  margin-bottom: 20px;
+}
+.confirm h3 span {
+  transform: translateY(3px);
+  margin-right: 7px;
+  font-size: 26px;
+}
+.confirm h4 {
+  color: var(--body_txt);
+  line-height: 1.8;
+}
+.confirm p {
+  color: var(--light_txt);
+  line-height: 1.6;
+}
+.confirm table {
+  width:100%;
+  margin: 0 auto;
+  background-color: #fff;
+  font-size: 13px;
+}
+.confirm table th {
+  line-height: 1.4;
+}
+.confirm table th,
+.confirm table td {
+  text-align: center;
+}
+table > thead > tr > th {
+  font-weight: 400;
+  color: #757575;
+  /* vertical-align: bottom;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12); */
+}
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+  text-align: left;
+  padding: 1.6rem;
+  vertical-align: top;
+  border-top: 0;
+}
+table td button {
+  border: 1px solid #0068ff;
+  width: 100%;
+  background: none;
+  border-radius: 10px;
+  text-align: center;
+  color: #0068ff;
+  text-transform: uppercase;
+  padding: 6px;
+  transform: translateY(-6px);
+}
+.field textarea {
+  width: 100%;
+  border: none;
+  appearance: none;
+  outline: none;
+  resize: none;
+  padding: 18px 0;
+  overflow-y: hidden;
+}
+.consent h4 {
+  line-height: 2.5rem;
+  color: var(--primary-c);
+}
+.consent h5 {
+  color: var(--light_txt);
+  margin-left: 8px;
+}
+.consent > div {
+  padding: 14px 0;
+}
+.consent > div > div {
+  display: flex;
+}
+.confirm .wrapper {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+.confirm button {
+  border: 1px solid #0068ff;
+  background: none;
+  border-radius: 10px;
+  text-align: center;
+  color: #0068ff;
+  text-transform: uppercase;
+  padding: 6px;
+  transform: translateY(-6px);
+}
+.confirm .del {
+  border-color:#dc3545;
+  color: #dc3545;
+}
+
+.confirm table ~ button {
+  position: absolute;
+  top: -25px;
+  right: 69px;
+  border-radius: 7px;
+}
+.field_wrapper {
+  display: flex;
+  width: 412px;
+  gap: 10px;
+}
+.field_wrapper.phone > .field {
+  width: calc(100% / 3);
+}
+.field_wrapper.phone .field input {
+  width: 100%;
+}
+.field_wrapper.sm {
+  margin-bottom: -29px;
+}
+.field_wrapper.sm > div:first-of-type {
+  width: 60%;
+}
+.field_wrapper.sm > div:nth-of-type(2) {
+  width: calc(40% - 10px);
+}
+.field_wrapper.sm > div:nth-of-type(2) button {
+  width: 100%;
+  display: inline-flex;
+  appearance: none;
+  border: 0;
+  outline: none;
+  justify-content: center;
+  padding: 17px 0;
+  border-radius: 10px;
+  background: #0068ff;
+  color: #fff;
+}
+.field_wrapper.sm > div:nth-of-type(2) button:hover {
+  opacity: 0.8;
+}
+.field_wrapper.sm:nth-of-type(2) > div:first-of-type {
+  width: 45%;
+}
+.field_wrapper.sm:nth-of-type(2) > div:nth-of-type(2) {
+  width: calc(55% - 10px);
+}
+.field.sm {
+  margin-bottom: 12px !important;
+}
+.sub_tit {
+  font-weight: 500;
+  margin-bottom: 18px;
+  color: #333;
+  font-size: 18px;
+}
+select {
+  background: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-down-512.png)
+    no-repeat;
+  background-position: 95% 50%;
+  background-size: 25px;
+  opacity: 0.6;
+}
+thead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.btn-group {
+  margin-top:30px;
+  text-align:right;
+}
