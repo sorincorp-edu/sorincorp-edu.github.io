@@ -20,7 +20,7 @@ last_modified_at: 2022-09-19
 - 브랜치 별 각각 다른 작업을 동시에 진행 가능. 
 - 두 브랜치의 내용을 병합(merge)하여 한 브랜치에 정리 가능.
 
-![git branch](./../../images/lecture/git_05.00.01..jpg)
+![git branch](./../../images/sr_web/git_05.00.01..jpg)
 
 ## git branch, checkout : 브랜치 생성과 전환
 ### 1. git branch : 브랜치 생성, 관리, 삭제
@@ -54,13 +54,13 @@ last_modified_at: 2022-09-19
 ### merge의 종류
 - Fast-foward merge 
 
-  ![Fast-foward merge ](./../../images/lecture/git_05.03.01.jpg)
+  ![Fast-foward merge ](./../../images/sr_web/git_05.03.01.jpg)
 
   master 브랜치에서 dev1이 분기해 나가는 지점(commit), 즉 두 브랜치가 공통으로 가지고 있는 commit을 base라고 한다. 그런데 master와 dev1이 각각 참조하는 commit은 동일 선상에 위치하고 있다. 이 때 두 브랜치는 Fast-foward 상태에 있다고 한다.
 
  - 3-way merge
  
-  ![Fast-foward merge ](./../../images/lecture/git_05.03.04.jpg)
+  ![Fast-foward merge ](./../../images/sr_web/git_05.03.04.jpg)
 
   두 브랜치가 base에서 분리된 commit을 참조할 때 git merge 명령을 실행하면 새로운 commit이 생성된다. 이와 같은 merge를 3-way merge 라고 한다. 3-way로 불리는 이유는 내용을 병합할 때, base와 각 브랜치 2개가 참조하는 commit을 기준으로 병합을 진행하기 때문이다
 

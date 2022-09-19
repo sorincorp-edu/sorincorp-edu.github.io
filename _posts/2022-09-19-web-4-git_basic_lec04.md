@@ -59,11 +59,11 @@ last_modified_at: 2022-09-19
 
 ## git stash : 작업 내용을 별도의 공간에 임시 저장, 추출
 
-![git stash](./../../images/lecture/git_04.06.01.jpg)
+![git stash](./../../images/sr_web/git_04.06.01.jpg)
 
 - 작업 중 타인의 내용을 pull하기 위해 임시 저장해야 하는 상황에 사용
 
-![git stash](./../../images/lecture/git_04.06.04.jpg)
+![git stash](./../../images/sr_web/git_04.06.04.jpg)
 
 - git stash : 인덱스 영역에 트래킹 되는 파일을 임시영역에 저장하고, modified부분 Working directiory에서 제거(기본 명칭 WIP로 저장됨)
 - git stash –u : 새롭게 추가된 파일(untracked)도 함께 임시영역에 저장
