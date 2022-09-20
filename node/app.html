@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>NodeJS-Test</title>
+        
+        <!-- 제이쿼리 불러오기 -->
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body>
+        <input type="text" id="name" />
+        <input type="submit" id="OK"/>
+        
+        <script>
+            $("#OK").click(function(){      // OK 버튼 클릭하면
+                $.ajax({
+                    url: 'http://127.0.0.1:3000/postTest',       // postTest 주소로
+                    async: true,            // 동기화 - 서버에서 반응이 올때까지 기다림
+                    type: 'POST',           // POST 방식으로
+                    data: {
+                        test: $("#name").val()  // 텍스트필드에 입력한 값을 test라는 이름으로 보냄
+                    },
+                    dataType: 'json',
+                    success: function(data) {   // POST 요청 성공 시
+                        alert("보내기 성공");
+                    },
+                    error: function(err) {      // POST 요청 실패 시
+                        alert("보내기 실패 " + err);
+                    }
+                }); 
+            });
+        </script>
+    </body>
+</html>
