@@ -54,17 +54,17 @@ WebSocket이 존재하기 전에는 Polling이나 Long Polling 등의 방식으�
 ### Opening Handshake
 웹소켓 클라이언트에서 핸드쉐이크 요청(HTTP Upgrade)을 전송하고 이에 대한 응답으로 핸드 셰이크 응답을 받는데, 이때 응답 코드는 101입니다. 101은 '프로토콜 전환'을 서버가 승인했음을 알리는 코드입니다.
 이 과정에서 요청과 응답의 헤더를 살펴보겠습니다. ws://localhost:8080/chat 으로 접속하려고 한다고 가정합니다.
-
-```
-GET /chat HTTP/1.1
-Host: localhost:8080
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
-Sec-WebSocket-Protocol: chat, superchat
-Sec-WebSocket-Version: 13
-Origin: http://localhost:9000
-```
+ 
+  ```
+    GET /chat HTTP/1.1
+    Host: localhost:8080
+    Upgrade: websocket
+    Connection: Upgrade
+    Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+    Sec-WebSocket-Protocol: chat, superchat
+    Sec-WebSocket-Version: 13
+    Origin: http://localhost:9000
+  ```
 
 - Upgrade : 프로토콜을 전환하기 위해 사용하는 헤더. 웹소켓 요청 시에는 반드시 websocket이라는 값을 가지며, 이 값이 없거나 다른 값이면 cross-protocol attack이라고 간주하여 웹소켓 접속을 중지시킵니다.  
 - Connection : 현재의 전송이 완료된 후 네트워크 접속을 유지할 것인가에 대한 정보. 웹소켓 요청 시에는 반드시 Upgrade라는 값을 가지며, Upgrade와 마찬가지로 이 값이 없거나 다른 값이면 웹소켓 접속을 중지시킵니다. 
@@ -74,22 +74,23 @@ Origin: http://localhost:9000
 - Origin : 모든 브라우저는 보안을 위해 이 헤더를 보냅니다(Cross-Site WebSocket Hijacking와 같은 공격을 피하기 위해서). 대부분 어플리케이션은 이 헤더가 없는 요청을 거부하며, 이러한 이유로 CORS정책이 만들어진 것입니다. 
 
 이 외에도 여러 메시지나 서브 프로토콜, Referer나 Cookie와 같은 공통 헤더, 인증 헤더 등을 추가해 보낼 수도 있습니다. 
-
-```
-HTTP/1.1 101 Switching Protocols
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
-Sec-WebSocket-Protocol: chat
-```
+ 
+  ```
+    HTTP/1.1 101 Switching Protocols
+    Upgrade: websocket
+    Connection: Upgrade
+    Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+    Sec-WebSocket-Protocol: chat
+  ```
 
 - Upgrade와 Connection은 요청과 동일합니다. 
 - Sec-WebSocket-Accept : 요청 헤더의 Sec-WebSocket-Key에 유니크 아이디를 더해서 SHA-1로 해싱한 후, base64로 인코딩한 결과. 웹소켓 연결이 개시되었음을 알립니다. 
 
 ### Data Transfer
+
 핸드쉐이크를 통해 웹소켓 연결이 수립되면, 데이터 전송 파트가 시작됩니다. 여기에서는 클라이언트와 서버가 '메시지'라는 개념으로 데이터를 주고받는데, 여기서 메시지는 한 개 이상의 '프레임'으로 구성되어 있습니다. (프레임은 텍스트(UTF-8) 데이터, 바이너리 데이터, 컨트롤 프레임(프로토콜 레벨의 신호) 등이 있습니다)
 핸드 셰이크가 끝난 시점부터 서버와 클라이언트는 서로가 살아 있는지 확인하기 위해 heartbeat 패킷을 보내며, 주기적으로 ping을 보내 체크합니다. 이는 서버와 클라이언트 양측에서 설정 가능합니다. 
- 
+
 ### Close Handshake
 클라이언트와 서버 모두 커넥션을 종료하기 위한 컨트롤 프레임을 전송할 수 있습니다. 이 컨트롤 프레임은 Closing Handshake를 시작하라는 특정한 컨트롤 시퀀스를 포함한 데이터를 가지고 있습니다. 위 그림에서는 서버가 커넥션을 종료한다는 프레임을 보내고, 클라이언트가 이에 대한 응답으로 Close 프레임을 전송합니다. 그러면 웹소켓 연결이 종료됩니다. 연결 종료 이후에 수신되는 모든 추가적인 데이터는 버려집니다. 
 
