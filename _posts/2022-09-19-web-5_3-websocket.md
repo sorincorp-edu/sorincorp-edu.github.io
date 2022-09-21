@@ -86,10 +86,35 @@ Sec-WebSocket-Protocol: chat
 - Upgrade와 Connection은 요청과 동일합니다. 
 - Sec-WebSocket-Accept : 요청 헤더의 Sec-WebSocket-Key에 유니크 아이디를 더해서 SHA-1로 해싱한 후, base64로 인코딩한 결과. 웹소켓 연결이 개시되었음을 알립니다. 
 
- 
 ### Data Transfer
 핸드쉐이크를 통해 웹소켓 연결이 수립되면, 데이터 전송 파트가 시작됩니다. 여기에서는 클라이언트와 서버가 '메시지'라는 개념으로 데이터를 주고받는데, 여기서 메시지는 한 개 이상의 '프레임'으로 구성되어 있습니다. (프레임은 텍스트(UTF-8) 데이터, 바이너리 데이터, 컨트롤 프레임(프로토콜 레벨의 신호) 등이 있습니다)
 핸드 셰이크가 끝난 시점부터 서버와 클라이언트는 서로가 살아 있는지 확인하기 위해 heartbeat 패킷을 보내며, 주기적으로 ping을 보내 체크합니다. 이는 서버와 클라이언트 양측에서 설정 가능합니다. 
  
 ### Close Handshake
 클라이언트와 서버 모두 커넥션을 종료하기 위한 컨트롤 프레임을 전송할 수 있습니다. 이 컨트롤 프레임은 Closing Handshake를 시작하라는 특정한 컨트롤 시퀀스를 포함한 데이터를 가지고 있습니다. 위 그림에서는 서버가 커넥션을 종료한다는 프레임을 보내고, 클라이언트가 이에 대한 응답으로 Close 프레임을 전송합니다. 그러면 웹소켓 연결이 종료됩니다. 연결 종료 이후에 수신되는 모든 추가적인 데이터는 버려집니다. 
+
+## WebSocket 단점
+- 웹소켓을 지원하지 않는 브라우저 존재
+- HTTP와 달리 Stateful 한 프로토콜이므로 연결을 항상 유지해야 하며, 비정상적으로 연결이 끊겼을 때에 대한 대응이 필요
+- 개발 복잡도 증가
+- Socket 연결을 유지하는 자체가 비용 발생
+
+# socket.io
+-  일정 간격마다 데이터를 받아오는 HTTP polling을 사용해 실시간 통신 기능을 구현하게끔 해주는 자바스크립트 라이브러리.
+- xhr-polling 을 이용한 long-polling 연결 후 WebSocket 연결로 전환.
+- 장점 1: 새로운 사람이 채팅방에 들어왔음을 연결된 모든 사용자들에게 한번에 알려야하는 경우, socket.io는 **연결된 모든 클라이언트에 메세지를 브로드캐스팅** 할 수 있지만 websocket은 연결된 사용자들의 리스트를 받아와서 한명씩 메시지를 보내야한다.
+- 장점 2: 소켓 연결 실패 시 socket.io는 fallback을 통해 다른 방식으로 알아서 reconnect하지만 websocket은 reconnect를 시도하지 않는다.
+- 단점 : 많은 비용, 자원, boilerplate코드
+
+# WebRTC
+Web Real-Time Communication의 약자로, 브라우저끼리 통신하여 중간자인 서버 없이 브라우저 간에 P2P 형태로 오디오, 영상, 데이터를 교환할 수 있게 하는 기술이다.
+
+![webRTC](./../../images/sr_web/webrtc.jfif)
+
+WebSocket과 대비되는 점은 아래와 같다.
+- UDP Layer위에서 Peer to Peer 로 동작하는 데이터 전송 방식
+- WebRTC는 영상, 오디오, 데이터 통신이 고성능, 고품질이도록 설계되었다.
+- WebRTC는 브라우저간 직접 통신이므로, 훨씬 전송 속도가 빠름
+- WebRTC는 네트워크 지연시간이 짧다.(Latency)
+- 다만, WebRTC만으로 제어하기 어려운 부분이 있으므로 WebSocket, 또는 Socket.io 를 사용해 신호를 주고받을 수 있는 Signaling 서버는 필요하다.
+- 현재 Zoom, Google Meet, 매일 쓰고있는 Gather.town 에서도 이 WebRTC를 이용하여 화상회의 기능을 구현하였다.
