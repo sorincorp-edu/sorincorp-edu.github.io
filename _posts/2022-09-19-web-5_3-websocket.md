@@ -60,13 +60,48 @@ last_modified_at: 2022-09-20
 
 ![websocket](./../../images/sr_web/websocket_2.gif) 
 
-클라이언트가 평범한 HTTP Request를 서버로 계속 요청해 이벤트 내용을 전달받는 방식. 가장 쉬운 방법이지만 클라이언트가 지속적으로 Request를 요청하기 때문에 클라이언트의 수가 많아지면 서버의 부담이 급증한다. HTTP Request Connection을 맺고 끊는 것 자체가 부담이 많은 방식이고, 클라이언트에서 실시간 정도의 빠른 응답을 기대하기 어렵다.
+- 클라이언트가 평범한 HTTP Request를 서버로 계속 요청해 이벤트 내용을 전달받는 방식. 
+- 가장 쉬운 방법이지만 클라이언트가 지속적으로 Request를 요청하기 때문에 클라이언트의 수가 많아지면 서버의 부담이 급증. 
+- HTTP Request Connection을 맺고 끊는 것 자체가 부담이 많은 방식이고, 클라이언트에서 실시간 정도의 빠른 응답을 기대하기 어려움.
 
 ## Long polling
 
 ![websocket](./../../images/sr_web/websocket_3.gif) 
 
-클라이언트에서 서버로 일단 HTTP Request를 요청한다. 이 상태로 계속 기다리다가 서버에서 해당 클라이언트로 전달할 이벤트가 있다면 그 순간 Response 메세지를 전달하며 연결이 종료된다. 곧이어 클라이언트가 다시 HTTP Request를 요청해 서버의 다음 이벤트를 기다리는 방식. polling보다 서버의 부담이 줄겠으나, 클라이언트로 보내는 이벤트들의 시간간격이 좁다면 polling과 별 차이 없게 되며, 다수의 클라이언트에게 동시에 이벤트가 발생될 경우 서버의 부담이 급증한다.
+- 클라이언트에서 서버로 일단 HTTP Request를 요청후  이 상태로 계속 기다리다가 서버에서 해당 클라이언트로 전달할 이벤트가 있다면 그 순간 Response 메세지를 전달하며 연결이 종료.
+- 응답수신 후 클라이언트가 다시 HTTP Request를 요청해 서버의 다음 이벤트를 기다리는 방식. 
+- polling보다 서버의 부담이 줄겠으나, 클라이언트로 보내는 이벤트들의 시간간격이 좁다면 polling과 별 차이 없게 되며, 다수의 클라이언트에게 동시에 이벤트가 발생될 경우 서버의 부담이 급증.
+
+## HTTP/2 + SSE
+- HTTP/2 서버 푸시는 서버가 클라이언트 캐시에 리소스를 사전에 전송하는 것으로 웹소켓처럼 어플리케이션 코드에서 이벤트로 가져올 수 없다.
+
+![websocket](./../../images/sr_web/how-javascript-work-9.9492a47e.png) 
+
+- 실시간 서비스를 위해서는 Server-Sent Events (SSE)를 사용.
+- SSE는 커넥트가 되어 있으면 서버가 데이터를 푸시 할 수 있다. (one-way publish-subscribe model)
+- 클라이언트는 객체를 서버로 부터 스트림을 받아 EventSource로 데이터를 수신.
+
+  ```
+    var es = new EventSource(stream_url);
+
+    es.onmessage = function (event) {
+        // 이벤트 설정이안된 기본 데이터 처리
+    };
+    es.addEventListener('myevent', function(e) {
+        // 'myevent' 이벤트의 데이터 처리
+    }, false);
+  ```
+
+- http2는 멀티플랙스로 한 연결에 SSE 스트림을 동시에 여러개 포함할 수 있다. 
+
+![websocket](./../../images/sr_web/how-javascript-work-11.15593463.png) 
+
+- 양쪽으로 많은 양의 메세지가 교환되고 멀티 플레이어인 경우, 지연시간이 낮아서 실시간을 기대하는 상황에서는 websocket이 어울리지만 뉴스라던가 데이터를 열람하는 서비스이라면 HTTP2 + SSE를 사용해도 좋다.
+
+- 웹소켓은 HTTP연결을 변경시켜 사용하기 때문은 기존 웹 인프라와 호환성 문제를 걱정해야하고 HTTP2 + SSE는 브라우저 호환성이 웹소켓보다 좋지 않다.
+
+- 단점 1. 브라우저에서 최대 동시 접속 수는 HTTP/1.1의 경우 6개, HTTP/2는 100개까지 가능.
+- 단점 2. 클라이언트에서 페이즈를 닫아도 서버에서 감지불가.
 
 # WebSocket 동작방식
 웹소켓은 HTTP로 Handshake를 한 후 ws로 프로토콜을 변환하여 웹소켓 프레임을 통해 데이터를 전송합니다. 웹소켓은 양방향 통신(full-duplex)을 지원하며, 그래서 요청과 응답을 구분하지 않습니다.
