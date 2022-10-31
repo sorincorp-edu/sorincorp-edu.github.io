@@ -1,0 +1,205 @@
+Spring을 사용한 WebSocket 소개
+
+1. 개요
+이 기사에서는 Spring Framework 4.0에 도입된 새로운 WebSocket 기능을 사용하여 메시징을 구현하는 간단한 웹 애플리케이션을 만들 것 입니다.
+
+WebSocket을은입니다 양방향 , 전이중 , 영구 연결 웹 브라우저와 서버 사이. WebSocket 연결이 설정되면 클라이언트나 서버가 이 연결을 닫기로 결정할 때까지 연결이 열린 상태로 유지됩니다.
+
+일반적인 사용 사례는 앱에서 채팅과 같이 여러 사용자가 서로 통신하는 경우일 수 있습니다. 우리는 우리의 예에서 간단한 채팅 클라이언트를 만들 것입니다.
+
+2. 메이븐 의존성
+이것은 Maven 기반 프로젝트이므로 먼저 필요한 의존성을 pom.xml 에 추가합니다 .
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-websocket</artifactId>
+    <version>5.2.2.RELEASE</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-messaging</artifactId>
+    <version>5.2.2.RELEASE</version>
+</dependency>
+또한 JSON 을 사용하여 메시지 본문을 작성하므로 Jackson 의존성 을 추가해야 합니다 . 이를 통해 Spring은 Java 객체를 JSON 으로/에서 변환할 수 있습니다 .
+
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.10.2</version>
+</dependency>
+
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId> 
+    <version>2.10.2</version>
+</dependency>
+위 라이브러리의 최신 버전을 얻으려면 Maven Central 에서 찾으십시오 .
+
+3. Spring에서 WebSocket 활성화
+가장 먼저 할 일은 WebSocket 기능을 활성화하는 것입니다. 이렇게 하려면 애플리케이션에 구성을 추가하고 이 클래스에 @EnableWebSocketMessageBroker 어노테이션을 추가해야 합니다 .
+
+이름에서 알 수 있듯이 메시지 브로커가 지원하는 WebSocket 메시지 처리를 활성화합니다.
+
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/topic");
+        config.setApplicationDestinationPrefixes("/app");
+    }
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+         registry.addEndpoint("/chat");
+         registry.addEndpoint("/chat").withSockJS();
+    }
+}
+여기에서 configureMessageBroker 메소드를 사용하여 메시지 브로커 를 구성하는 것을 볼 수 있습니다 . 먼저 메모리 내 메시지 브로커가 "/topic" 접두사가 붙은 대상에서 클라이언트로 메시지를 다시 전달할 수 있도록 합니다.
+
+W E는 우리의 완전한 간단한 (통해 애플리케이션 어노테이션 타겟팅 방법 필터 목적지로 "/ 앱"접두사 지정하여 구성 @MessageMapping을 ).
+
+registerStompEndpoints의 방법은 가능하게 "/ 채팅"엔드 포인트를 등록 Spring의 STOMP의 지원 . 탄력성을 위해 SockJS 없이 작동하는 끝점도 여기에 추가합니다.
+
+접두사가 "/app"인 이 끝점은 ChatController.send() 메서드가 핸들에 매핑 되는 끝점입니다 .
+
+또한 SockJS 폴백 옵션을 활성화하여 WebSocket을 사용할 수 없는 경우 대체 메시징 옵션을 사용할 수 있습니다. 이것은 WebSocket이 아직 모든 브라우저에서 지원되지 않고 제한적인 네트워크 프록시에 의해 제외될 수 있기 때문에 유용합니다.
+
+폴백을 사용하면 애플리케이션에서 WebSocket API를 사용할 수 있지만 런타임에 필요할 때 WebSocket이 아닌 대안으로 정상적으로 저하됩니다.
+
+4. 메시지 모델 생성
+이제 프로젝트를 설정하고 WebSocket 기능을 구성했으므로 보낼 메시지를 만들어야 합니다.
+
+끝점은 본문이 JSON 개체 인 STOMP 메시지의 보낸 사람 이름과 텍스트를 포함하는 메시지를 수락 합니다.
+
+메시지는 다음과 같습니다.
+
+{
+    "from": "John",
+    "text": "Hello!"
+}
+텍스트를 전달하는 메시지를 모델링하기 위해 from 및 text 속성을 사용하여 간단한 Java 객체를 만들 수 있습니다 .
+
+public class Message {
+
+    private String from;
+    private String text;
+
+    // getters and setters
+}
+기본적으로 Spring은 Jackson 라이브러리를 사용하여 모델 객체를 JSON으로 또는 JSON에서 변환합니다.
+
+5. 메시지 처리 컨트롤러 생성
+우리가 보았듯이 STOMP 메시징 작업에 대한 Spring의 접근 방식은 컨트롤러 메서드를 구성된 끝점에 연결하는 것입니다. 이것은 @MessageMapping 어노테이션을 통해 가능합니다 .
+
+엔드포인트와 컨트롤러 간의 연결은 필요한 경우 메시지를 처리할 수 있는 기능을 제공합니다.
+
+@MessageMapping("/chat")
+@SendTo("/topic/messages")
+public OutputMessage send(Message message) throws Exception {
+    String time = new SimpleDateFormat("HH:mm").format(new Date());
+    return new OutputMessage(message.getFrom(), message.getText(), time);
+}
+F 또는 목적을 우리의 예, 우리는라는 이름의 또 다른 모델 객체 만듭니다 OutputMessage 구성된 목적지로 전송 출력 메시지를 표현하기를 . 발신자와 수신 메시지에서 가져온 메시지 텍스트로 객체를 채우고 타임스탬프로 보강합니다.
+
+메시지를 처리한 후 @SendTo 어노테이션으로 정의된 적절한 대상으로 메시지를 보냅니다 . " /topic/messages " 대상 의 모든 구독자 는 메시지를 받습니다.
+
+6. 브라우저 클라이언트 생성
+서버 측에서 구성한 후 sockjs-client 라이브러리 를 사용하여 메시징 시스템과 상호 작용하는 간단한 HTML 페이지를 빌드합니다.
+
+먼저 sockjs 및 stomp 자바스크립트 클라이언트 라이브러리 를 가져와야 합니다 . 다음으로 끝점과의 통신을 여는 connect() 함수, STOMP 메시지를 보내는 sendMessage() 함수 , 통신을 닫는 disconnect() 함수를 만들 수 있습니다.
+
+<html>
+    <head>
+        <title>Chat WebSocket</title>
+        <script src="resources/js/sockjs-0.3.4.js"></script>
+        <script src="resources/js/stomp.js"></script>
+        <script type="text/javascript">
+            var stompClient = null;
+            
+            function setConnected(connected) {
+                document.getElementById('connect').disabled = connected;
+                document.getElementById('disconnect').disabled = !connected;
+                document.getElementById('conversationDiv').style.visibility 
+                  = connected ? 'visible' : 'hidden';
+                document.getElementById('response').innerHTML = '';
+            }
+            
+            function connect() {
+                var socket = new SockJS('/chat');
+                stompClient = Stomp.over(socket);  
+                stompClient.connect({}, function(frame) {
+                    setConnected(true);
+                    console.log('Connected: ' + frame);
+                    stompClient.subscribe('/topic/messages', function(messageOutput) {
+                        showMessageOutput(JSON.parse(messageOutput.body));
+                    });
+                });
+            }
+            
+            function disconnect() {
+                if(stompClient != null) {
+                    stompClient.disconnect();
+                }
+                setConnected(false);
+                console.log("Disconnected");
+            }
+            
+            function sendMessage() {
+                var from = document.getElementById('from').value;
+                var text = document.getElementById('text').value;
+                stompClient.send("/app/chat", {}, 
+                  JSON.stringify({'from':from, 'text':text}));
+            }
+            
+            function showMessageOutput(messageOutput) {
+                var response = document.getElementById('response');
+                var p = document.createElement('p');
+                p.style.wordWrap = 'break-word';
+                p.appendChild(document.createTextNode(messageOutput.from + ": " 
+                  + messageOutput.text + " (" + messageOutput.time + ")"));
+                response.appendChild(p);
+            }
+        </script>
+    </head>
+    <body onload="disconnect()">
+        <div>
+            <div>
+                <input type="text" id="from" placeholder="Choose a nickname"/>
+            </div>
+            <br />
+            <div>
+                <button id="connect" onclick="connect();">Connect</button>
+                <button id="disconnect" disabled="disabled" onclick="disconnect();">
+                    Disconnect
+                </button>
+            </div>
+            <br />
+            <div id="conversationDiv">
+                <input type="text" id="text" placeholder="Write a message..."/>
+                <button id="sendMessage" onclick="sendMessage();">Send</button>
+                <p id="response"></p>
+            </div>
+        </div>
+
+    </body>
+</html>
+7. 예제 테스트 
+예제를 테스트하기 위해 몇 개의 브라우저 창을 열고 다음 위치에서 채팅 페이지에 액세스할 수 있습니다.
+
+http://localhost:8080
+이 작업이 완료되면 닉네임을 입력하고 연결 버튼을 눌러 채팅에 참여할 수 있습니다. 메시지를 작성하고 보내면 채팅에 참여한 모든 브라우저 세션에서 볼 수 있습니다.
+
+예를 보려면 스크린샷을 살펴보십시오.
+
+
+8. 결론
+이 예제에서, 우리는 한 탐구 Spring의 웹 소켓을 지원. 우리는 서버 측 구성 을 보았고 sockjs 및 stomp Javascript 라이브러리를 사용 하여 간단한 클라이언트 측 대응물 을 구축했습니다 .
+
+예제 코드는 GitHub 프로젝트 에서 찾을 수 있습니다 .
+
+참고
+https://docs.spring.io/spring-framework/docs/current/reference/html
+https://www.baeldung.com/websockets-spring
